@@ -1,15 +1,12 @@
 # The IGRINS A0V Corrector
-This program is for correcting IGRINS standard star A0V spectra for differences in flexure and airmass between the A0V standard star and the science target.
-
-Questions, comments, want to contribute?
-Email me at kkaplan@usra.edu
-
-# What does it do?
 This program is designed to correct the A0V spectrum flexure and airmass to match the science target in order to improve telluric correction.
 - It applies a 0th order correction pixel shift in the detector's x-direction to correct for the difference flexure in the detector's x direction between when.
 - It also applies a power-law correction to account for the difference in airmass betweem when the A0V star was observed and when the science target was observed. 
 - Both corrections are fit iteratively
 - The correction is applied to the A0V spectrum and then saved as corrected fits files
+
+Questions, comments, want to contribute?
+Email me at kkaplan@usra.edu
 
 # Requirements
 - Python 3.7 or above
@@ -63,4 +60,19 @@ sci_fits_path = 'SDCK_20200901_0093.spec.fits' #Path to science target .spec.fit
 - Run the python script again to process the K-band
 ```
 python a0v_corrector.py
+```
+# Outputs
+
+The A0V star spectrum corrected for flexure and airmass it outputted as `.spec.corrected.fits` and `.spec_flattened.corrected.fits` files.  These files are indentical to the original files except the spectra in the first extension have had the corrections applied to them.  You will want to back up your original `.spec.fits` and `.spec_flattened.fits` files and use the `.spec.corrected.fits` and `.spec_flattened.corrected.fits` files instead.  There are no outputs for the science spectrum since the A0V spectrum's flexure and airmass is corrected to match the science spectrum.
+
+The `.pdf` files show the correction itself.  If you run the automated correction, the first two pages will be the chisq plots for the flexure and power (airmass).  The rest of the pages show each echelle order of the science spectrum telluric corrected by the A0V spectrum before and after the flexure and airmass corrections have been applied so you can see how good the corrections are.
+
+For the example above,  `a0v_corrector.py` would output the following files
+```
+SDCH_20200901_0093.spec.corrected.pdf
+SDCH_20200901_0093.spec.corrected.fits
+SDCH_20200901_0093.spec_flattened.corrected.fits
+SDCK_20200901_0093.spec.corrected.pdf
+SDCK_20200901_0093.spec.corrected.fits
+SDCJ_20200901_0093.spec_flattened.corrected.fits
 ```
