@@ -19,7 +19,8 @@ Email me at kkaplan@usra.edu
 Download or clone the git repo to your machine.  
 
 # Set up and run
-- Identify night and the frame numbers for the A0V star and science target you want to correct between.
+- **Note that before you begin, the science spectrum must have a clean and bright enough continuum to allow the telluric lines in the science spectrum to be compared to the A0V spectrum.  In other words, this only will work well with stars.**
+- Identify night and the frame numbers for the A0V star and science target you want to correct between.  
 - Copy `a0v_corrector.py` to the IGRINS pipeline `plp/output/YYYYMMDD` directory (or directories) for the night(s) you have data you want to apply the correction to.
 - Open that copy of `a0v_corrector.py` in your favorite text editor.
 - Modify the file paths to point the the `.spec.fits` and `.spec_flattened.fits` file for the A0V star spectrum and the `.spec.fits` file for the science spectrum. Note that the H and K bands are treated as seperate spectra so you will need to do this process twice, once for each band. In the example below the night will be 20200901, the A0V frame number will be 0093, the science target frame number will be 0105, and we will use the H-band spectra (files start with `SDCH_`, for the K-band they start with `SDCK_`).
