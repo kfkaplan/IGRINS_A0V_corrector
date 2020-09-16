@@ -185,13 +185,13 @@ for order in range(n_orders): #Apply best fit corrections to A0V data
 	corrected_data_a0v_flattened[order,:] = srebin(x, x+best_fit_flexure, data_a0v_flattened[order,:])**best_fit_power
 hdul_a0v[0].data = corrected_data_a0v #Put the corrected data back into the fits files and save the otuputted fits file as *.corrected.fits
 hdul_flattened_a0v[0].data = corrected_data_a0v_flattened
-hdul_a0v.writeto(a0v_fits_filename[:-5]+'.corrected.fits', overwrite=True)
-hdul_flattened_a0v.writeto(flattened_a0v_fits_filename[:-5]+'.corrected.fits', overwrite=True)
+hdul_a0v.writeto(a0v_fits_path[:-5]+'.corrected.fits', overwrite=True)
+hdul_flattened_a0v.writeto(flattened_a0v_fits_path[:-5]+'.corrected.fits', overwrite=True)
 hdul_a0v.close()
 hdul_flattened_a0v.close()
 
 #Plot telluric corrected science target before and after the found best fit flexure and airmass corrections for the A0V standard
-with PdfPages(a0v_fits_filename[:-5]+'.corrected.pdf') as pdf:
+with PdfPages(a0v_fits_path[:-5]+'.corrected.pdf') as pdf:
 	if automate_fit:
 		#Plot chisq results for flexure and power (airmass) corrections
 		pyplot.figure() #Plot flexure chisq
