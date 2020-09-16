@@ -2,22 +2,6 @@
 # stars and the science target.  For automatif fitting, it assumes the science target has enough continuum to see and fit telluric lines.
 
 
-#--------------------------------------------User Inputs (modify these)-----------------------------------------------------------------------------------------------
-a0v_fits_path =  #Path to A0V .spec.fits file
-flattened_a0v_fits_path = #Path to A0V .spec_flattened.fits file
-sci_fits_path = #Path to science target .spec.fits file
-input_flexure = 0.0
-input_power = 1.0
-automate_fit = True
-#-------------------------------Automation Inputs (modify these if you know what you are doing)------------------------------------------------------------------------
-n_iterations = 5 #Number of iterations
-skip_first_orders = 4 #Skip how many first and last orders?
-skip_last_orders = 4
-flexure_array = np.arange(-2.0, 2.0 + 0.2, 0.2) #Define the range and step size in pixels to cross-correlate the flexure between the a0v and science spectra
-power_array = np.arange(0., 2.0 + 0.2, 0.2) #Define the range of powers and step size to corss-correlate the telluric line depths between the a0v and science spectra
-min_x, max_x = [300, 1750] #Cuts to sides pixels of detector in x-direction
-min_a0v, max_a0v = [0.2, 0.85] #Cuts to continuum normalized A0V spectrum (we are interested only in the telluric line edges)
-#----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Import necessary libraries
 from astropy.io import fits
@@ -37,6 +21,24 @@ except ImportError:
 import matplotlib.gridspec as grd
 np.seterr(all='ignore') #Turn off those annoying runtime warnings
 
+
+
+#--------------------------------------------User Inputs (modify these)-----------------------------------------------------------------------------------------------
+a0v_fits_path = '' #Path to A0V .spec.fits file
+flattened_a0v_fits_path = '' #Path to A0V .spec_flattened.fits file
+sci_fits_path = '' #Path to science target .spec.fits file
+input_flexure = 0.0
+input_power = 1.0
+automate_fit = True
+#-------------------------------Automation Inputs (modify these if you know what you are doing)------------------------------------------------------------------------
+n_iterations = 5 #Number of iterations
+skip_first_orders = 4 #Skip how many first and last orders?
+skip_last_orders = 4
+flexure_array = np.arange(-2.0, 2.0 + 0.2, 0.2) #Define the range and step size in pixels to cross-correlate the flexure between the a0v and science spectra
+power_array = np.arange(0., 2.0 + 0.2, 0.2) #Define the range of powers and step size to corss-correlate the telluric line depths between the a0v and science spectra
+min_x, max_x = [300, 1750] #Cuts to sides pixels of detector in x-direction
+min_a0v, max_a0v = [0.2, 0.85] #Cuts to continuum normalized A0V spectrum (we are interested only in the telluric line edges)
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -106,9 +108,9 @@ def srebin(oldWave, newWave, oldFlux, kind='linear'):
 
 
 
-hdul_a0v = fits.open(a0v_fits_filename) #Open fits files
-hdul_flattened_a0v = fits.open(flattened_a0v_fits_filename)
-hdul_sci = fits.open(sci_fits_filename)
+hdul_a0v = fits.open(a0v_fits_path) #Open fits files
+hdul_flattened_a0v = fits.open(flattened_a0v_fits_path)
+hdul_sci = fits.open(sci_fits_path)
 data_a0v = hdul_a0v[0].data #Grab data from each fits file (for IGRINS, the data are stored in the zeroith extension)
 data_a0v_flattened =  hdul_flattened_a0v[0].data
 data_sci = hdul_sci[0].data
