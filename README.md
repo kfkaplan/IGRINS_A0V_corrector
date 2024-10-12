@@ -1,3 +1,14 @@
+# WARNING: The IGRINS A0V corrector is considered obselete!!!!
+
+The IGRINS A0V corrector will remain here but is now considered obselete and not reccomended for use in flexure correcting IGRINS data.  Flexure correction is now a feature of the IGRINS PLP and RRISA.
+
+We reccomend you either grab IGRINS data from the IGRINS Raw and Reduced Spectral Archive RRISA (https://igrinscontact.github.io) or reduce your raw data with in IGRINS PLP v3 and above (https://github.com/igrins/plp).
+
+
+Questions or comments?
+Email me at kyle.kaplan@austin.utexas.edu
+
+
 # The IGRINS A0V Corrector
 This program is designed to correct the A0V spectrum flexure and airmass to match the science target in order to improve telluric correction.
 - It applies a 0th order correction pixel shift in the detector's x-direction to correct for the difference flexure in the detector's x direction between when.
@@ -6,7 +17,7 @@ This program is designed to correct the A0V spectrum flexure and airmass to matc
 - The correction is applied to the A0V spectrum and then saved as corrected fits files
 
 Questions, comments, want to contribute?
-Email me at kkaplan@usra.edu
+Email me at kyle.kaplan@austin.utexas.edu
 
 # Requirements
 - Python 3.7 or above
